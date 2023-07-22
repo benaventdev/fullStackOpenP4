@@ -1,0 +1,9 @@
+POST http://localhost:3001 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Lo que el viento se llevó",
+  "author": "Yo mismo",
+  "url": "www.google.com",
+  "likes": 0
+}
