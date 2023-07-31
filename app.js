@@ -6,11 +6,14 @@ const blogsRouter = require('./controllers/blogs')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
-const lodash = require('lodash')
 
-logger.info('connecting to', config.MONGODB_URI)
+const connectionString = NODE_ENV === 'test'
+  ? MONGODB_URI_TEST
+  : MONGODB_URI
 
-mongoose.connect(config.MONGODB_URI)
+logger.info('connecting to', connectionString)
+
+mongoose.connect(connectionString)
   .then(() => {
     logger.info('connected to MongoDB')
   })
