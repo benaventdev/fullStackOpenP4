@@ -1,0 +1,9 @@
+PUT http://localhost:3001/64c82135f501894d684c9842 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "El XSFASFSA valor",
+  "author": "Yo mismo",
+  "url": "www.google.es",
+  "likes": 10
+}

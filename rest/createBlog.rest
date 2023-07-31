@@ -2,8 +2,8 @@ POST http://localhost:3001 HTTP/1.1
 content-type: application/json
 
 {
-  "title": "Avaricia, egoismo, terco",
+  "title": "El otro valor",
   "author": "Yo mismo",
-  "url": "www.google.com",
+  "url": "www.google.es",
   "likes": 0
 }

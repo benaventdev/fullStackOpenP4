@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=test nodemon index.js",
-    "start": "NODE_ENV=production node index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
     "test": "jest --verbose",
     "test:silent": "jest --verbose --silent",
     "test:watch": "npm run test -- --watch"
