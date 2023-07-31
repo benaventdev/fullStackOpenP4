@@ -7,9 +7,9 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 
-const connectionString = NODE_ENV === 'test'
-  ? MONGODB_URI_TEST
-  : MONGODB_URI
+const connectionString = config.NODE_ENV === 'test'
+  ? config.MONGODB_URI_TEST
+  : config.MONGODB_URI
 
 logger.info('connecting to', connectionString)
 
