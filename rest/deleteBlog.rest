@@ -1,2 +1,2 @@
-DELETE http://localhost:3001/64c81b4c927278a3c900b298 HTTP/1.1
+DELETE http://localhost:3001/api/blogs/64c88843098d46ed729da9d8 HTTP/1.1
 content-type: application/json

@@ -1,9 +1,9 @@
-POST http://localhost:3001 HTTP/1.1
+POST http://localhost:3001/api/blogs HTTP/1.1
 content-type: application/json
 
 {
-  "title": "El otro valor",
+  "title": "E3214324321, envidia, especial",
   "author": "Yo mismo",
   "url": "www.google.es",
-  "likes": 0
+  "likes": 6
 }
