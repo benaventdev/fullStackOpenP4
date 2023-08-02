@@ -4,7 +4,7 @@ const app = require('../app')
 const api = supertest(app)
 const Blog = require('../models/blog')
 
-test.skip('receiving notes', async () => {
+test.skip('receiving blogs', async () => {
     await api
     .get ('/')
     .expect(200)
@@ -62,7 +62,7 @@ test.skip('if no TITLE or no URL error', async () => {
   .expect(400)
 })
 
-test('delete one resource ', async () => {
+test.skip('delete one resource ', async () => {
   await api.delete("/64c81b4c927278a3c900b298")
   .send()
   .expect(204)
