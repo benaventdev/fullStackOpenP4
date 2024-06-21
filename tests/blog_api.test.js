@@ -5,18 +5,16 @@ const supertest = require('supertest')
 const helper = require('../utils/test_helper')
 const assert = require('node:assert')
 const app = require('../app')
+const blogsRouter = require('../controllers/blog')
 
 const api = supertest(app)
 
-
-
 beforeEach(async () => {
     await Blog.deleteMany({})
-    let blogObject = new Blog(helper.initialBlogs[0])
-    await blogObject.save()
-    blogObject = new Blog(helper.initialBlogs[1])
-    await blogObject.save()
-})
+    const blogObjects = helper.initialBlogs.map((blog) => new Blog(blog))
+    const promiseArray = blogObjects.map((blog) => blog.save())
+    await Promise.all(promiseArray)
+  })
 
 test('blogs are returned as json', async () => {
   await api
@@ -63,14 +61,16 @@ test('a valid blog can be added ', async () => {
   const titles = response.map(r => r.title)
 
   assert.strictEqual(titles.length, helper.initialBlogs.length + 1)
-
+  response.forEach((blog) => {
+    assert('id' in blog)
+  })
   assert(titles.includes('Angular skills'))
 })
 
-test('blog without title is not added', async () => {
+test('blog without title or url is not added', async () => {
   const newBlog = {
+    title: "le title",
     author: "Josh Cli",
-    url: "https://fakeurl.com/",
     likes: 15
   }
 
@@ -82,6 +82,23 @@ test('blog without title is not added', async () => {
   const response = await helper.blogsInDb()
 
   assert.strictEqual(response.length, helper.initialBlogs.length)
+})
+
+test('blog without likes will be 0', async () => {
+  const newBlog = {
+    title: "Le title",
+    author: "Josh Cli",
+    url: "https://fakeurl.com/"
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+
+  const response = await helper.blogsInDb()
+
+  assert.strictEqual(response.length, helper.initialBlogs.length+1)
 })
 
 test('a specific blog can be viewed', async () => {

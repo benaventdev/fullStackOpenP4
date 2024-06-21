@@ -17,15 +17,15 @@ blogsRouter.get('/:id', async (request, response, next) => {
 )
 
 blogsRouter.post('/', async (request, response, next) => {
-    const blog = new Blog(request.body)
-
-    if(!blog.title){
-      response.status(400).end()
-    } else {
-      const savedNote = await blog.save()
-      response.status(201).json(savedNote)
-    }
-  })
+  const blog = new Blog(request.body)
+  if(!blog.likes) blog.likes=0
+  if(!blog.title || !blog.url){
+    response.status(400).end()
+  } else {
+    const savedNote = await blog.save()
+    response.status(201).json(savedNote)
+  }
+})
 
 blogsRouter.delete('/:id', async (request, response, next) => {
   const blog = await Blog.findByIdAndDelete(request.params.id)
