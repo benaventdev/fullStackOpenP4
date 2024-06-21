@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "url": "https://github.com/benaventdev",
+  "title": "No siempre se tiene razón",
+  "author": "YO",
+  "likes": 19990
+}
