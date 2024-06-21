@@ -18,16 +18,12 @@ blogsRouter.get('/:id', async (request, response, next) => {
 
 blogsRouter.post('/', async (request, response, next) => {
     const blog = new Blog(request.body)
-    console.log(blog)
+
     if(!blog.title){
       response.status(400).end()
     } else {
-      await blog
-      .save()
-      .then(result => {
-        response.status(201).json(result)
-      })
-      .catch(error => next(error))
+      const savedNote = await blog.save()
+      response.status(201).json(savedNote)
     }
     
   })
