@@ -1,9 +1,10 @@
-POST http://localhost:3003/api/blogs
+POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
   "url": "https://github.com/benaventdev",
-  "title": "No siempre se tiene razón",
+  "title": "Esta no funciona",
   "author": "YO",
-  "likes": 19990
+  "likes": 19990,
+  "userId": "6676ffd270e50ba750ba5462"
 }

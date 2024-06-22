@@ -6,7 +6,6 @@ const helper = require('../utils/test_helper')
 const assert = require('node:assert')
 const app = require('../app')
 const blogsRouter = require('../controllers/blog')
-const blog = require('../models/blog')
 
 const api = supertest(app)
 
@@ -64,7 +63,8 @@ describe('adding new blogs', () => {
       title: "Angular skills",
       author: "Michael Juan",
       url: "https://fakeurl.com/",
-      likes: 7
+      likes: 7,
+      userId: "6676ffd270e50ba750ba5462"
     }
 
     await api
@@ -88,7 +88,8 @@ describe('adding new blogs', () => {
     const newBlog = {
       title: "le title",
       author: "Josh Cli",
-      likes: 15
+      likes: 15,
+      userId: "6676ffd270e50ba750ba5462"
     }
 
     await api
@@ -105,7 +106,8 @@ describe('adding new blogs', () => {
     const newBlog = {
       title: "Le title",
       author: "Josh Cli",
-      url: "https://fakeurl.com/"
+      url: "https://fakeurl.com/",
+      userId: "6676ffd270e50ba750ba5462"
     }
 
     await api
