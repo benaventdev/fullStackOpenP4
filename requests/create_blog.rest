@@ -1,10 +1,11 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbmF2ZW50ZGV2IiwiaWQiOiI2Njc2ZmZkMjcwZTUwYmE3NTBiYTU0NjIiLCJpYXQiOjE3MTkxMzY1NDd9.2ocfVp079ASlr_O-MEG3vGPuNP5x7c44UxcnuFm-ke4
 
 {
-  "url": "https://github.com/benaventdev",
-  "title": "Esta no funciona",
+  "url": "https://fake.url",
+  "title": "Testing del token",
   "author": "YO",
-  "likes": 19990,
+  "likes": 19,
   "userId": "6676ffd270e50ba750ba5462"
 }

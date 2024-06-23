@@ -1,6 +1,15 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.startsWith('Bearer ')) {
+    return authorization.replace('Bearer ', '')
+  }
+  return null
+}
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog.find({})
@@ -20,7 +29,13 @@ blogsRouter.get('/:id', async (request, response, next) => {
 blogsRouter.post('/', async (request, response, next) => {
   const blog = new Blog(request.body)
   
-  const user = await User.findById(request.body.userId)
+  const decodedToken =  jwt.verify(getTokenFrom(request), process.env.SECRET)
+  console.log("El valor del token es ", decodedToken)
+  if (!decodedToken.id) {
+    return response.status(401).json({ error: 'token invalid' })
+  }
+
+  const user = await User.findById(decodedToken.id)
 
   if(!blog.likes) blog.likes=0
   if(!blog.title || !blog.url){
@@ -36,12 +51,12 @@ blogsRouter.post('/', async (request, response, next) => {
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
-  const blog = await Blog.findByIdAndDelete(request.params.id)
+  await Blog.findByIdAndDelete(request.params.id)
   response.status(204).end()
 })
 
 blogsRouter.patch('/:id', async (request, response) => {
-  const blog = await Blog.findByIdAndUpdate(request.params.id, {$set: {likes: request.body.likes}}, { new: true})
+  await Blog.findByIdAndUpdate(request.params.id, {$set: {likes: request.body.likes}}, { new: true})
   response.status(205).end()
 })
 
