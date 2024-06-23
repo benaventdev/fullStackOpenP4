@@ -1,0 +1,11 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NzdmOWFiNGUwODU0OGIyZmRlYzc5ZiIsImlhdCI6MTcxOTE0MDM5MCwiZXhwIjoxNzE5MTQzOTkwfQ.eIrlnhBwkdbyrrKyJMYtabpQNAKeD4BhIgSzAlz3SZ0
+
+{
+  "url": "https://fake.url",
+  "title": "Creating and populate the blogs",
+  "author": "root",
+  "likes": 1,
+  "userId": "6677f9ab4e08548b2fdec79f"
+}

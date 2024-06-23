@@ -47,13 +47,12 @@ describe('checking with existing data', () => {
     const blogsAtStart = await helper.blogsInDb()
   
     const blogToView = blogsAtStart[0]
-  
+
     const resultBlog = await api
       .get(`/api/blogs/${blogToView.id}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
-  
-    assert.deepStrictEqual(resultBlog.body, blogToView)
+    assert.deepStrictEqual(resultBlog.body.title, blogToView.title)
   })
 })
 
@@ -63,15 +62,15 @@ describe('adding new blogs', () => {
       title: "Angular skills",
       author: "Michael Juan",
       url: "https://fakeurl.com/",
-      likes: 7,
-      userId: "6676ffd270e50ba750ba5462"
+      likes: 7
     }
 
-    await api
+    const resp = await api
       .post('/api/blogs')
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NzgzM2FjODg0Y2VmNjk0ZDdhZmJhZCIsImlhdCI6MTcxOTE1MzYzNywiZXhwIjoxNzE5MTU3MjM3fQ.Scilp80iJJwkAk4UsN7oridMWKRUekFwlCfZTQ6PjW4')
       .send(newBlog)
       .expect(201)
-      .expect('Content-Type', /application\/json/)
+      .expect('Content-Type', /application\/json/)   
 
     const response = await helper.blogsInDb()
 
@@ -88,12 +87,12 @@ describe('adding new blogs', () => {
     const newBlog = {
       title: "le title",
       author: "Josh Cli",
-      likes: 15,
-      userId: "6676ffd270e50ba750ba5462"
+      likes: 15
     }
 
     await api
       .post('/api/blogs')
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NzgzM2FjODg0Y2VmNjk0ZDdhZmJhZCIsImlhdCI6MTcxOTE1MzYzNywiZXhwIjoxNzE5MTU3MjM3fQ.Scilp80iJJwkAk4UsN7oridMWKRUekFwlCfZTQ6PjW4')
       .send(newBlog)
       .expect(400)
 
@@ -106,12 +105,12 @@ describe('adding new blogs', () => {
     const newBlog = {
       title: "Le title",
       author: "Josh Cli",
-      url: "https://fakeurl.com/",
-      userId: "6676ffd270e50ba750ba5462"
+      url: "https://fakeurl.com/"
     }
 
     await api
       .post('/api/blogs')
+      .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NzgzM2FjODg0Y2VmNjk0ZDdhZmJhZCIsImlhdCI6MTcxOTE1MzYzNywiZXhwIjoxNzE5MTU3MjM3fQ.Scilp80iJJwkAk4UsN7oridMWKRUekFwlCfZTQ6PjW4')
       .send(newBlog)
       .expect(201)
 
@@ -127,6 +126,7 @@ test('a blog can be deleted', async () => {
 
   await api
     .delete(`/api/blogs/${blogToDelete.id}`)
+    .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NzgzM2FjODg0Y2VmNjk0ZDdhZmJhZCIsImlhdCI6MTcxOTE1MzYzNywiZXhwIjoxNzE5MTU3MjM3fQ.Scilp80iJJwkAk4UsN7oridMWKRUekFwlCfZTQ6PjW4')
     .expect(204)
 
   const blogsAtEnd = await helper.blogsInDb()

@@ -1,11 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlbmF2ZW50ZGV2IiwiaWQiOiI2Njc2ZmZkMjcwZTUwYmE3NTBiYTU0NjIiLCJpYXQiOjE3MTkxMzY1NDd9.2ocfVp079ASlr_O-MEG3vGPuNP5x7c44UxcnuFm-ke4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcmlldGEiLCJpZCI6IjY2NzgwZmM2MTY2OTA1YTZjYWU2NzY0YSIsImlhdCI6MTcxOTE1MTY2MSwiZXhwIjoxNzE5MTU1MjYxfQ.6A-0hSbXA8B5m6xidH6Ac5C5Y5JyufT5rw3-4HaA2AA
 
 {
-  "url": "https://fake.url",
-  "title": "Testing del token",
-  "author": "YO",
-  "likes": 19,
-  "userId": "6676ffd270e50ba750ba5462"
+  "url": "https://noSeCuinar1234.url",
+  "title": "Ara a fer la mona",
+  "author": "MARIA ANTONIETA",
+  "likes": 5
 }

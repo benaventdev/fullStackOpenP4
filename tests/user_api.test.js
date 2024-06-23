@@ -17,9 +17,17 @@ beforeEach(async () => {
     const user = new User({ 
         username: 'root',
         name: 'root',
-        passwordHash
+        passwordHash: passwordHash
     })
     await user.save()
+
+    const passwordHashi = await bcrypt.hash('unaContrasenya', 10)
+    const newUser = new User({
+        username: 'benaventdev',
+        name: 'vicent',
+        passwordHash: passwordHashi
+    })
+    await newUser.save()
 })
 
 describe('when there is initially one user in DB', () => {
@@ -42,7 +50,7 @@ describe('when there is initially one user in DB', () => {
         const usersAtEnd = await helper.usersInDb()
         assert.strictEqual(usersAtEnd.length,usersAtStart.length+1)
 
-        const usernames = await usersAtEnd.map( user => user.username)
+        const usernames = usersAtEnd.map( user => user.username)
         assert(usernames.includes(user.username))
     })
 
@@ -50,7 +58,7 @@ describe('when there is initially one user in DB', () => {
         const usersAtStart = await helper.usersInDb()
     
         const newUser = {
-          username: 'root',
+          username: 'benaventdev',
           name: 'Superuser',
           password: 'benaventdev',
         }
